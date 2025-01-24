@@ -3,8 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hakaton_project/feature/select_mission/bloc/missions_bloc.dart';
-import 'package:hakaton_project/feature/select_mission/data/datasource/missions_datasource.dart';
-import 'package:hakaton_project/feature/select_mission/data/repository/missions_repository.dart';
 import 'package:hakaton_project/feature/select_mission/widget/missions_provider.dart';
 import 'package:hakaton_project/feature/select_mission/widget/view/missions_list_view.dart';
 import 'package:hakaton_project/feature/auth/login_screen.dart';
@@ -74,26 +72,24 @@ class _MyAppState extends State<MyApp> {
       ),
       home: _userInfo == null
           ? LoginScreen(onLogin: _handleLogin)
-          : MissionsProvider(
-              isOrganizer: _userInfo!.role == UserRole.organizer,
-              isCommander: _userInfo!.role == UserRole.commander,
-              authToken: _authToken,
-              child: Scaffold(
-                appBar: AppBar(
-                  title: Text('Missions - ${_userInfo!.firstName} ${_userInfo!.lastName}'),
-                  actions: [
-                    IconButton(
-                      icon: const Icon(Icons.logout),
-                      onPressed: () {
-                        setState(() {
-                          _userInfo = null;
-                          _authToken = null;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                body: MissionsListView(
+          : Scaffold(
+              appBar: AppBar(
+                title: Text('Missions - ${_userInfo!.firstName} ${_userInfo!.lastName}'),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.logout),
+                    onPressed: () {
+                      setState(() {
+                        _userInfo = null;
+                        _authToken = null;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              body: MissionsProvider(
+                authToken: _authToken!,
+                child: MissionsListView(
                   sidesRepository: _sidesRepository,
                   isOrganizer: _userInfo!.role == UserRole.organizer,
                   isCommander: _userInfo!.role == UserRole.commander,
