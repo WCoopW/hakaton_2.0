@@ -1,7 +1,7 @@
-import 'package:hakaton_project/feature/select_mission/model/mission_d_t_o.dart';
+import 'package:hakaton_project/feature/select_mission/model/dto.dart';
 
 abstract interface class IMissionsDataSource {
 /* -------------------------------------------------------------------------- */
-  Future<List<MissionDTO>> getMissions();
+  Future<List<MissionDto>> getMissions();
 /* -------------------------------------------------------------------------- */
 }

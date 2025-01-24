@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hakaton_project/feature/select_mission/widget/missions_scope.dart';
 import 'package:hakaton_project/feature/select_mission/widget/view/missions_list_view.dart';
+import 'package:dio/dio.dart';
+import 'package:hakaton_project/feature/sides/data/sides_repository.dart';
 
 class MissionselectionScreen extends StatelessWidget {
 /* -------------------------------------------------------------------------- */
@@ -29,10 +31,20 @@ class MissionselectionScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const Spacer(flex: 10),
-            const Expanded(
+            Expanded(
               flex: 38,
               child: MissionsScope(
-                child: MissionsListView(),
+                child: MissionsListView(
+                  sidesRepository: SidesRepository(
+                    Dio()
+                      ..options = BaseOptions(
+                        baseUrl: 'http://localhost:8000/api',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                      ),
+                  ),
+                ),
               ),
             ),
             const Spacer(flex: 2),

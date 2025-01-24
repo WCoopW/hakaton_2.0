@@ -21,7 +21,7 @@ class MissionCardView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Container(
           width: double.infinity,
-          height: 78,
+          height: 85,
           decoration: BoxDecoration(
             border: Border.all(
               color: theme.dividerColor,
@@ -29,25 +29,23 @@ class MissionCardView extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(20),
           ),
-          child: SizedBox.expand(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 12, top: 5),
-                  child: Text(
-                    date,
-                    style: theme.textTheme.headlineSmall,
+                Text(
+                  date,
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: theme.textTheme.bodySmall?.color,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: Text(
-                    missionName,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.headlineLarge,
-                  ),
+                const SizedBox(height: 4),
+                Text(
+                  missionName,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleLarge,
                 ),
               ],
             ),

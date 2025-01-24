@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hakaton_project/core/mission_endpoints.dart';
 import 'package:hakaton_project/feature/select_mission/data/i_missions_data_source.dart';
-import 'package:hakaton_project/feature/select_mission/model/mission_d_t_o.dart';
+import 'package:hakaton_project/feature/select_mission/model/dto.dart';
+
 
 class MissionsDataSource implements IMissionsDataSource {
 /* -------------------------------------------------------------------------- */
@@ -16,7 +17,7 @@ class MissionsDataSource implements IMissionsDataSource {
   });
 /* -------------------------------------------------------------------------- */
   @override
-  Future<List<MissionDTO>> getMissions() async {
+  Future<List<MissionDto>> getMissions() async {
     try {
       final response = await client.get(
         endpoint.missions,
@@ -24,7 +25,7 @@ class MissionsDataSource implements IMissionsDataSource {
       if (response.statusCode == 200) {
         List<dynamic> jsonData = response.data;
         final missionsList =
-            jsonData.map((mission) => MissionDTO.fromJson(mission)).toList();
+            jsonData.map((mission) => MissionDto.fromJson(mission)).toList();
         return missionsList;
       }
     } on DioException catch (e) {
