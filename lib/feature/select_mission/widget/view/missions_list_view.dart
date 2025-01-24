@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hakaton_project/feature/select_mission/widget/missions_scope.dart';
 import 'package:hakaton_project/feature/select_mission/widget/view/mission_card_view.dart';
+import 'package:hakaton_project/feature/select_mission/widget/view/mission_settings_screen.dart';
 
 class MissionsListView extends StatefulWidget {
   const MissionsListView({super.key});
@@ -22,25 +23,26 @@ class _MissionsListViewState extends State<MissionsListView> {
   Widget build(BuildContext context) {
     final scope = MissionsScope.of(context);
     return SizedBox(
-      height: 250,
+      height: 400,
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         children: [
           for (var mission in scope.missions) ...[
             MissionCardView(
-              missionName: mission.missionName,
-              date: mission.missionDate,
-              onTap: () => scope.onCardTap(
-                mission.missionId.toString(),
-              ),
-            ),
+                mission: mission,
+                onTap: () {
+                  scope.onCardTap(
+                    mission.id.toString(),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MissionSettingsScreen(),
+                      ),
+                    ),
+                  );
+                }),
             const SizedBox(height: 8),
           ],
-          if (MissionsScope.Missions.isEmpty)
-            TextButton(
-              onPressed: () => MissionsScope.fetchMissions(),
-              child: const Text('Попробовать снова'),
-            )
         ],
       ),
     );

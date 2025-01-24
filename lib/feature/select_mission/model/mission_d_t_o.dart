@@ -18,11 +18,15 @@ class MissionDTO {
   @JsonKey(name: 'status', required: true)
   final bool status;
 /* -------------------------------------------------------------------------- */
+  @JsonKey(name: 'name', required: true)
+  final String name;
+/* -------------------------------------------------------------------------- */
   MissionDTO({
     required this.id,
     required this.number,
     required this.teams,
     required this.status,
+    required this.name,
   });
 /* -------------------------------------------------------------------------- */
   factory MissionDTO.fromJson(Map<String, dynamic> json) =>
@@ -35,6 +39,7 @@ class MissionDTO {
         number: number,
         teams: teams,
         status: status,
+        name: name,
       );
 /* -------------------------------------------------------------------------- */
 }

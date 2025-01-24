@@ -10,33 +10,30 @@ class MissionselectionScreen extends StatelessWidget {
 /* -------------------------------------------------------------------------- */
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: theme.primaryColor,
-      ),
-      child: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
+    return const Scaffold(
+      backgroundColor: Color(0xff0a0a0b),
+      body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Spacer(flex: 18),
             Text(
-              "Выберите игру",
-              style: theme.textTheme.headlineLarge,
+              "Задачи",
               textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontSize: 25,
+              ),
             ),
-            const Spacer(flex: 10),
-            const Expanded(
-              flex: 38,
+            SizedBox(
+              height: 100,
+            ),
+            Center(
               child: MissionsScope(
                 child: MissionsListView(),
               ),
             ),
-            const Spacer(flex: 2),
-            const Spacer(flex: 8)
           ],
         ),
       ),

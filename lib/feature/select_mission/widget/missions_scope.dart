@@ -100,7 +100,7 @@ class MissionsScopeState extends State<MissionsScope> {
   }
 
 /* -------------------------------------------------------------------------- */
-  void onCardTap(String missionId) {}
+  void onCardTap(String missionId, Future push) {}
 /* -------------------------------------------------------------------------- */
 
   @override
